@@ -1,0 +1,32 @@
+import random
+
+# Generate a random number between 1 and 100
+number_to_guess = random.randint(1,100)
+
+print("Welcome to the Number Guessing Game!")
+print("I have picked a number between 1 and 100. Can you guess what it is?")
+
+attempts = 0 # Initialize attempt counter
+
+while True: # Single game loop
+    try:
+        # Get user's guess and validate it
+        user_guess = int(input("Enter your guess (1-100): "))
+        if user_guess < 1 or user_guess > 100:
+            print("Please enter a number between 1 and 100.")
+            continue # Restart the loop if the number is out of range
+    except ValueError:
+        print("Invalid input. Please enter a valid number.")
+        continue # Restart the loop if input is not a number
+
+    attempts += 1 # Increment attempts for every valid guess
+
+    # Check the guess against the random number
+    if user_guess > number_to_guess:
+        print("Too high! Try again.")
+    elif user_guess < number_to_guess:
+        print("Too low! Try again.")
+    else:
+        # Congratulate the user and break the loop
+        print(f"Congratulations! You guessed it in {attempts} attempts!")
+        break
